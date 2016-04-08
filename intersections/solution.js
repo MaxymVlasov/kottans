@@ -44,6 +44,32 @@ function intersects (fig1, fig2) {
   fig1.push(fig1[0])
   fig2.push(fig2[0])
 
+  var pointIntersec = []
+
+  for (var i = 0; i < fig1.length - 1; i++) {
+    var bBox1 = boundBox(fig1[i], fig1[i + 1])
+
+    for (var j = 0; j < fig2.length - 1; j++) {
+      var bBox2 = boundBox(fig2[j], fig2[j + 1])
+
+      if (bBox1.xmax < bBox2.xmin ||
+          bBox2.xmax < bBox1.xmin ||
+          bBox1.ymax < bBox2.ymin ||
+          bBox2.ymax < bBox1.ymin) { continue }
+
+      // TODO: one else if
+
+      var line1 = equationOfLine(fig1[i], fig1[i + 1])
+      var line2 = equationOfLine(fig2[j], fig2[j + 1])
+
+      var point = intersectPoint(line1, line2)
+
+      if (isNaN(point.x) || isNaN(point.y)) { continue }
+
+      pointIntersec.push(point)
+    }
+  }
+
   return [
     [
       { x: 60,  y: 240 },
