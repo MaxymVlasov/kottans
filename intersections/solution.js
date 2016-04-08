@@ -57,7 +57,20 @@ function intersects (fig1, fig2) {
           bBox1.ymax < bBox2.ymin ||
           bBox2.ymax < bBox1.ymin) { continue }
 
-      // TODO: one else if
+      var vectorProduct1 = ((bBox2.xmin - bBox1.xmin) * (bBox1.ymax - bBox1.ymin)) -
+                           ((bBox2.ymin - bBox1.ymin) * (bBox1.xmax - bBox1.xmin))
+
+      var vectorProduct2 = ((bBox2.xmax - bBox1.xmin) * (bBox1.ymax - bBox1.ymin)) -
+                           ((bBox2.ymax - bBox1.ymin) * (bBox1.xmax - bBox1.xmin))
+
+      var vectorProduct3 = ((bBox1.xmin - bBox2.xmin) * (bBox2.ymax - bBox2.ymin)) -
+                           ((bBox1.ymin - bBox2.ymin) * (bBox2.xmax - bBox2.xmin))
+
+      var vectorProduct4 = ((bBox1.xmax - bBox2.xmin) * (bBox2.ymax - bBox2.ymin)) -
+                           ((bBox1.ymax - bBox2.ymin) * (bBox2.xmax - bBox2.xmin))
+
+      if (Math.sign(vectorProduct1) === Math.sign(vectorProduct2) ||
+          Math.sign(vectorProduct3) === Math.sign(vectorProduct4)) { continue }
 
       var line1 = equationOfLine(fig1[i], fig1[i + 1])
       var line2 = equationOfLine(fig2[j], fig2[j + 1])
