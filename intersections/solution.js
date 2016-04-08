@@ -41,6 +41,9 @@ function intersects (fig1, fig2) {
     return {xmax: b.xmax, xmin: b.xmin, ymax: b.ymax, ymin: b.ymin}
   }
 
+  fig1.push(fig1[0])
+  fig2.push(fig2[0])
+
   return [
     [
       { x: 60,  y: 240 },
