@@ -10,6 +10,18 @@ function intersects (fig1, fig2) {
     return {x: line.x, y: line.y, z: line.z}
   }
 
+  function intersectPoint (line1, line2) {
+    var coefficient = line2.x / line1.x
+    if (coefficient !== 0) {
+      line2.y -= line1.y * coefficient
+      line2.z -= line1.z * coefficient
+    }
+    var y = line2.z / -line2.y
+    var x = -(line1.y * y + line1.z) / line1.x
+
+    return {x: x, y: y}
+  }
+
   return [
     [
       { x: 60,  y: 240 },
