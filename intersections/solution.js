@@ -1,5 +1,14 @@
-function intersects(fig1, fig2) {
-  // Замените код функции на полноценную реализацию
+'use strict'
+
+function intersects (fig1, fig2) {
+  function equationOfLine (begin, end) {
+    var line = {x: null, y: null, z: null}
+    line.x = end.y - begin.y
+    line.y = begin.x - end.x
+    line.z = -begin.x * (end.y - begin.y) + begin.y * (end.x - begin.x)
+
+    return {x: line.x, y: line.y, z: line.z}
+  }
 
   return [
     [
