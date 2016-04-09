@@ -41,6 +41,23 @@ function intersects (fig1, fig2) {
     return {xmax: b.xmax, xmin: b.xmin, ymax: b.ymax, ymin: b.ymin}
   }
 
+  function pointInPolygon (point, p) {
+    var j = p.length - 1
+    var bool = 0
+    for (var i = 0; i < p.length; i++) {
+      if (((p[i].y <= point.y && point.y < p[j].y) ||
+           (p[j].y <= point.y && point.y < p[i].y)) &&
+           (point.x >
+           (p[j].x - p[i].x) * (point.y - p[i].y) / (p[j].y - p[i].y) + p[i].x)) {
+
+        bool = !bool
+      }
+      j = i
+    }
+
+    return bool
+  }
+
   fig1.push(fig1[0])
   fig2.push(fig2[0])
 
@@ -95,6 +112,6 @@ function intersects (fig1, fig2) {
       { x: 150, y: 180 },
       { x: 180, y: 240 },
       { x: 210, y: 180 },
-      { x: 180, y: 240 }, //дубль
+      { x: 180, y: 240 }, //дубль    
     ]
 }
