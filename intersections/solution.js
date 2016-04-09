@@ -58,6 +58,14 @@ function intersects (fig1, fig2) {
     return bool
   }
 
+  function addAllPointsInsidePolygon (points, polygon) {
+    for (var i = 0; i < points.length; i++) {
+      if (pointInPolygon(points[i], polygon)) {
+        pointIntersec.push(points[i])
+      }
+    }
+  }
+
   fig1.push(fig1[0])
   fig2.push(fig2[0])
 
