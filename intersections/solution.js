@@ -108,18 +108,8 @@ function intersects (fig1, fig2) {
     }
   }
 
-  return [
-    [ { x: 140, y: 20  }, //якась лівізна, замість необхідної точки
-      { x: 60,  y: 240 },
-      { x: 90,  y: 240 },
-      { x: 60,  y: 150 },
-      { x: 270, y: 240 },
-      { x: 300, y: 240 },
-      { x: 300, y: 150 },
-      { x: 240, y: 180 },
-      { x: 150, y: 180 },
-      { x: 180, y: 240 },
-      { x: 210, y: 180 },
-      { x: 180, y: 240 }, //дубль    
-    ]
+  addAllPointsInsidePolygon(fig1, fig2)
+  addAllPointsInsidePolygon(fig2, fig1)
+
+  return [pointIntersec]
 }
