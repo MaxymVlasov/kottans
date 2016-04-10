@@ -74,6 +74,10 @@ function intersects (fig1, fig2) {
     }
   }
 
+  function invert (line) {
+    return {x: -line.x, y: -line.y, z: -line.z}
+  }
+
   fig1.push(fig1[0])
   fig2.push(fig2[0])
 
