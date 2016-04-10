@@ -4,7 +4,7 @@
 
 * Всі коментарі до коду в комітах
 
-* Тестувався на Iceweasel 38.7 (Firefox 38.0). Він не вміє у `let`, тому всюди `var`
+* Тестувалось на Iceweasel 38.7 (Firefox 38.0). Він не вміє у `let`, тому всюди `var`
 
 * Неповна реалізація
 
@@ -33,7 +33,7 @@
 ####Запуск на localhost
 ```
 $ git clone https://github.com/MaxymVlasov/kottans.git
-$ cd /kottans/intersections/
+$ cd kottans/intersections/
 ```
 Open `index.html` with yor browser.
 
