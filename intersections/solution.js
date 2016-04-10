@@ -19,7 +19,7 @@ function intersects (fig1, fig2) {
     var y = line2.z / -line2.y
     var x = -(line1.y * y + line1.z) / line1.x
 
-    return {x: x, y: y}
+    return {x: x, y: y, line1: line1, line2: line2}
   }
 
   function boundBox (point1, point2) {
@@ -61,6 +61,14 @@ function intersects (fig1, fig2) {
   function addAllPointsInsidePolygon (points, polygon) {
     for (var i = 0; i < points.length; i++) {
       if (pointInPolygon(points[i], polygon)) {
+        var prev = i - 1
+        var next = i + 1
+        if (i === 0) prev = points.length - 1
+        if (i === points.length - 1) next = 0
+
+        points[i].line1 = equationOfLine(points[i], points[prev])
+        points[i].line2 = equationOfLine(points[i], points[next])
+
         pointIntersec.push(points[i])
       }
     }
