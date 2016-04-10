@@ -78,6 +78,42 @@ function intersects (fig1, fig2) {
     return {x: -line.x, y: -line.y, z: -line.z}
   }
 
+  function equalEquationOfLines (obj1, obj2) {
+    var o1l1 = obj1.line1 || {}
+    var o1l2 = obj1.line2 || {}
+    var o2l1 = obj2.line1 || {}
+    var o2l2 = obj2.line2 || {}
+    var i_o2l1 = invert(obj2.line1 || {})
+    var i_o2l2 = invert(obj2.line2 || {})
+
+    if ((o1l1.x === o2l1.x && o1l1.y === o2l1.y && o1l1.z === o2l1.z) ||
+        (o1l1.x === i_o2l1.x && o1l1.y === i_o2l1.y && o1l1.z === i_o2l1.z)) {
+      delete obj1.line1
+      delete obj2.line1
+      return true
+    }
+    if ((o1l1.x === o2l2.x && o1l1.y === o2l2.y && o1l1.z === o2l2.z) ||
+        (o1l1.x === i_o2l2.x && o1l1.y === i_o2l2.y && o1l1.z === i_o2l2.z)) {
+      delete obj1.line1
+      delete obj2.line2
+      return true
+    }
+    if ((o1l2.x === o2l1.x && o1l2.y === o2l1.y && o1l2.z === o2l1.z) ||
+         (o1l2.x === i_o2l1.x && o1l2.y === i_o2l1.y && o1l2.z === i_o2l1.z)) {
+      delete obj1.line2
+      delete obj2.line1
+      return true
+    }
+    if ((o1l2.x === o2l2.x && o1l2.y === o2l2.y && o1l2.z === o2l2.z) ||
+        (o1l2.x === i_o2l2.x && o1l2.y === i_o2l2.y && o1l2.z === i_o2l2.z)) {
+      delete obj1.line2
+      delete obj2.line2
+      return true
+    }
+
+    return false
+  }
+
   fig1.push(fig1[0])
   fig2.push(fig2[0])
 
