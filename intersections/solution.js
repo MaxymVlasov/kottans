@@ -206,5 +206,34 @@ function intersects (fig1, fig2) {
   addAllPointsInsidePolygon(fig1, fig2)
   addAllPointsInsidePolygon(fig2, fig1)
 
+  pointIntersec.sort((a, b) => {
+    if (a.x > b.x) return 1
+    if (b.x > a.x) return -1
+    if (a.x === b.x) {
+      if (a.y > b.y) return 1
+      if (b.y > a.y) return -1
+    }
+    return 0
+  })
+
+  var allConnect = []
+  bindPoints(pointIntersec, allConnect)
+
+  var allConnect2 = []
+  bindPoints2(allConnect, allConnect2)
+
+  var allConnect3 = []
+  bindPoints2(allConnect2, allConnect3)
+
+  console.log(pointIntersec)
   return [pointIntersec]
+
+  // console.log(allConnect)
+  // return allConnect
+
+  // console.log(allConnect2)
+  // return allConnect2
+
+  // console.log(allConnect3)
+  // return allConnect3
 }
