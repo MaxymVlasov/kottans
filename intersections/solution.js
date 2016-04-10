@@ -125,6 +125,42 @@ function intersects (fig1, fig2) {
     return Math.sign(v1.x * v2.y - v2.x * v1.y)
   }
 
+  function bindPoints (from, to) {
+    for (var i = 0; i < from.length; i++) {
+      var p1 = {}
+      copyObj(from[i], p1)
+
+      for (var j = i + 1; j < from.length; j++) {
+        var p2 = {}
+        copyObj(from[j], p2)
+
+        if (equalEquationOfLines(p1, p2)) {
+          to.push([p1, p2])
+        }
+      }
+    }
+  }
+
+  function bindPoints2 (from, to) {
+    for (var i = 0; i < from.length; i++) {
+      var p1 = from[i][from[i].length - 1]
+
+      for (var j = i + 1; j < from.length; j++) {
+        var p2 = {}
+        copyObj(from[j][0], p2)
+
+        if (equalEquationOfLines(p1, p2) &&
+            turn(from[i][0], from[i][1], p2) !== 0) {
+          if (p2.line1 === undefined && p2.line2 === undefined) { continue }
+
+          var tmp = from[i].slice()
+          tmp.push(p2)
+          to.push(tmp)
+        }
+      }
+    }
+  }
+
   fig1.push(fig1[0])
   fig2.push(fig2[0])
 
