@@ -118,6 +118,13 @@ function intersects (fig1, fig2) {
     for (var key in from) to[key] = from[key]
   }
 
+  function turn (p1, p2, p3) {
+    var v1 = {x: p2.x - p1.x, y: p2.y - p1.y}
+    var v2 = {x: p3.x - p2.x, y: p3.y - p2.y}
+
+    return Math.sign(v1.x * v2.y - v2.x * v1.y)
+  }
+
   fig1.push(fig1[0])
   fig2.push(fig2[0])
 
