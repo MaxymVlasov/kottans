@@ -114,6 +114,10 @@ function intersects (fig1, fig2) {
     return false
   }
 
+  function copyObj (from, to) {
+    for (var key in from) to[key] = from[key]
+  }
+
   fig1.push(fig1[0])
   fig2.push(fig2[0])
 
